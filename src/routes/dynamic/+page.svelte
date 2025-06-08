@@ -237,12 +237,17 @@
 </script>
 
 <svelte:head>
-	<title>Dynamic Turns Demo</title>
+	<title>Dynamic Streaming Demo - CodecFlow Replayer</title>
 </svelte:head>
 
 <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
 	<div class="container mx-auto p-4">
-		<h1 class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">Dynamic Turns Demo</h1>
+		<div class="mb-6">
+			<h1 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Dynamic Streaming Demo</h1>
+			<p class="text-gray-600 dark:text-gray-400">
+				This demo shows how to add turns dynamically to a live replay timeline.
+			</p>
+		</div>
 
 		<div class="mb-6 space-y-4">
 			<!-- User Input Section -->
@@ -325,6 +330,15 @@
 				<li>Reactive timeline updates without full reloads</li>
 				<li>Support for both single turns and batch additions</li>
 			</ul>
+		</div>
+
+		<div class="mt-6 text-center">
+			<a
+				href="/zip"
+				class="inline-flex items-center gap-2 rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
+			>
+				← Try ZIP File Demo
+			</a>
 		</div>
 	</div>
 </div>
