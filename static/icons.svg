@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+    <symbol id="first" viewBox="0 0 24 24">
+      <line x1="5" x2="5" y1="5" y2="19"></line>
+      <polygon points="19 4 9 12 19 20 19 4"></polygon>
+    </symbol>
+    
+    <symbol id="prev" viewBox="0 0 24 24">
+      <polygon points="15 4 5 12 15 20 15 4"></polygon>
+    </symbol>
+    
+    <symbol id="play" viewBox="0 0 24 24">
+      <polygon points="6 3 20 12 6 21 6 3"></polygon>
+    </symbol>
+    
+    <symbol id="pause" viewBox="0 0 24 24">
+      <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+      <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+    </symbol>
+    
+    <symbol id="next" viewBox="0 0 24 24">
+      <polygon points="9 4 19 12 9 20 9 4"></polygon>
+    </symbol>
+  </defs>
+</svg>
