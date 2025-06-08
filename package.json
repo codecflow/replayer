@@ -1,5 +1,5 @@
 {
-	"name": "@codecflow/replay",
+	"name": "@codecflow/replayer",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",

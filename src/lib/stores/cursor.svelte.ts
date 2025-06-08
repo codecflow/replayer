@@ -1,8 +1,7 @@
-import { createAnimateClick, createAnimateDrag } from '$lib/components/utils/animationUtils.js';
+import { createAnimateClick, createAnimateDrag } from '$lib/components/utilities/animation.js';
 import type { Action, Position } from '$lib/types/index.js';
 
 export class CursorStore {
-	// State
 	position = $state<Position>([0, 0]);
 	scale = $state<number>(1);
 	isDragging = $state<boolean>(false);
@@ -12,15 +11,13 @@ export class CursorStore {
 	isClickAnimating = $state<boolean>(false);
 	isMovingCursor = $state<boolean>(false);
 
-  clickAnimationCleanup: (() => void) | null = null;
-  dragAnimationCleanup: (() => void) | null = null;
+	clickAnimationCleanup: (() => void) | null = null;
+	dragAnimationCleanup: (() => void) | null = null;
 
-	// Methods
 	moveTo(x: number, y: number) {
 		this.position = [x, y];
 		this.isMovingCursor = true;
 
-		// Reset moving flag after animation completes
 		setTimeout(() => {
 			this.isMovingCursor = false;
 		}, 100);
@@ -30,13 +27,11 @@ export class CursorStore {
 		this.position = [x, y];
 		this.isClickAnimating = true;
 
-		// Clean up any existing animation
 		if (this.clickAnimationCleanup) {
 			this.clickAnimationCleanup();
 			this.clickAnimationCleanup = null;
 		}
 
-		// Create and start the click animation
 		const animateClick = createAnimateClick((scale) => this.setScale(scale));
 
 		this.clickAnimationCleanup = animateClick(() => {
@@ -55,7 +50,6 @@ export class CursorStore {
 		this.dragEnd = [x, y];
 		this.dragProgress = Math.min(1, Math.max(0, progress));
 
-		// Update cursor position based on drag progress
 		const newX = this.dragStart[0] + (this.dragEnd[0] - this.dragStart[0]) * this.dragProgress;
 		const newY = this.dragStart[1] + (this.dragEnd[1] - this.dragStart[1]) * this.dragProgress;
 		this.position = [newX, newY];
@@ -65,13 +59,11 @@ export class CursorStore {
 		this.dragEnd = [endX, endY];
 		this.isDragging = true;
 
-		// Clean up any existing animation
 		if (this.dragAnimationCleanup) {
 			this.dragAnimationCleanup();
 			this.dragAnimationCleanup = null;
 		}
 
-		// Create and start the drag animation
 		const animateDrag = createAnimateDrag(
 			(progress) => (this.dragProgress = progress),
 			(position) => (this.position = position as Position)
@@ -84,7 +76,6 @@ export class CursorStore {
 		this.isDragging = false;
 		this.dragProgress = 0;
 
-		// Clean up any existing animation
 		if (this.dragAnimationCleanup) {
 			this.dragAnimationCleanup();
 			this.dragAnimationCleanup = null;
@@ -92,7 +83,6 @@ export class CursorStore {
 	}
 
 	processActions(actions: Action[]) {
-		// Process actions to update cursor position and trigger animations
 		for (const action of actions) {
 			switch (action.type) {
 				case 'click':
@@ -103,13 +93,10 @@ export class CursorStore {
 					this.animateDrag(action.to[0], action.to[1]);
 					break;
 				case 'type':
-					// For type actions, we might want to show some visual feedback
 					break;
 				case 'scroll':
-					// For scroll actions, we might want to show some visual feedback
 					break;
 				case 'key':
-					// For key actions, we might want to show some visual feedback
 					break;
 			}
 		}
@@ -120,7 +107,6 @@ export class CursorStore {
 	}
 
 	reset() {
-		// Clean up any existing animations
 		if (this.clickAnimationCleanup) {
 			this.clickAnimationCleanup();
 			this.clickAnimationCleanup = null;
